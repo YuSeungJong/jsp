@@ -1,0 +1,268 @@
+JSP/Spring 수업 
+-----------------------------------------------------------------------------
+
+
+2020.12.22 
+
+웹기반 어플리케이션 
+
+-개발환경 구축하기
+
+-웹 아키텍쳐
+
+-jsp /servlet, spring, 
+spring boot(공식과정x)
+
+-배치
+------------------------------------------------
+서버 환경의 이해
+
+Client Server / Web 아키텍처의 차이점
+웹 어플리케이션 개발을 위한 개발환경 설정을 할 수 있다.
+
+Presentation:사용자 인터페이스(화면), Business logic:업무처리로직, Data(access logic):data저장/접근 or database server
+
+*기억하기
+2-tier
+Client Serve 아키텍처: 시스텝내에 client, server 모듈이 공존, 확장이어렵다 
+전용 client 프로그램: 속도 빠름(병원,차트) / database만 공유하고 ui,business로직은 client 프로그램에 탑재 , 
+client간 통신 힘듬(데이터는 공유가능)/보안문제
+
+3-tier
+전용 client 프로그램 - 속도빠름(온라인 게임)
+server 통해 client간 통신 가능(business logic)
+client 프로그램의 배포의 문제(다운로드 끝날때까지 사용x, 모든 사용자 업데이트 해야함)
+
+---------------
+Web 아키텍처 
+전용 client 프로그램 - 웹 브라우저
+client : 화면 제어 (javascript)
+server: 비지니스 로직 제어 (jsp, mvc framework)
+업데이트 된 부분은 *Server에만 배포*
+
+제한 사항
+브라우저 기능에 의존 -> 제한적인 UI(Flex,flash)
+브라우저 기능을 벗어나는 추가기능 사용시 호환성/보안 문제(Active x)
+모든 브라우저가 동일한기능을 제공하지 않음(브라우저별 호환 문제, cross browsing)
+같은 브라우저의 버전별 호환 문제 
+
+
+CS vs WEB 배포 대상 차이점
+
+CS: 사용자,서버 다 
+WEB: 서버쪽만
+
+참고 
+web server, web applicatiopn server
+web server: client 요청을받아서 결과 전송 정적처리에 최적화(html, css, js, image)
+web applicatiopn server: 로직에 의해 동적 컨텐츠를 생성하여 web server에 전달- web server역할을 겸함(tomcat)
+
+
+*1 교시 정리* 
+Client Server Architecture ,Web Architecture 비교
+Web Architecture의 장점
+앞으로 개발시필요한 환경 (이클립스, 톰캣,오라클 등)
+형상관리의 필요성 이해
+
+ 
+서버 프로그램 구현하기 - Web 이란?
+cern: 웹 만든 단체 
+
+WEB(World Wide Web)
+인터넷에 연결된 컴퓨터들을 통해 사람들이정보 공유 하는 정보 공간 
+그림과 문자 교환하는 전송방식
+*가장 큰 특징: URL 통해 요청
+초기 웹: 정적 공간, 문서 공유 위한 목적으로 탄생
+*동적*으로 컨텐츠 생성하는 Web프로그래밍(웹어플리케이션)환경 등장함 (applet,jsp,asp,웹 어플리케이션)
+웹 페이지 -> 웹 어플리케이션 
+
+웹 어플리케이션 서버 방식(cgi)
+웹 서버와 프로그램 사이에 정보를 주고 받는 규칙
+
+웹 어플리케이션 서버 방식(was)
+요청 받은 웹서버는 동적 페이지 처리를 웹 어플리케이션 서버에게 위임 
+sevlet/jsp: thread방식으로 실행 - 동시 처리 성능이 우수
+servlet/jsp 가장 큰 특징 중요 : "main 함수를 통해 실행하지 않는다*
+
+client 유형
+요즘은 화면 중심(html,css,javascript)에서 데이터 중심(json,xml)으로 변화하고 있다.  
+
+구성
+[protocol]://[host][port number][path][filename][extenstion][query string]
+http://news.naver.com/main/read.nhn?mode=LSD&MIND
+
+자바와 웹 프로그래밍
+
+servlet: 자바의 웹 개발 표준 스펙, 스펙에 따라 만들어진 소스. 멀티쓰레드로 실행
+Jsp: 실행 코드 방식인 (java)servlet의스크립트 방식의 표준 스펙. jsp는 실행시 servlet으로 변환되어 실행
+web container: 표준 규약에 따라 구현된 웹 어플리케이션을 관리, 실행할 수 있는 소프트웨어 (tomcat, resin,jboss 등)
+(tomcat: 웹 어플리케이션 서버)
+
+중요!!!!!!!
+Servlet VS JSP
+
+Servlet: 자바 코드 안에 html (먼저나옴)
+JSP: html 문서 안에 자바 코드 
+
+*2교시 이론 정리"
+웹의 탄생 배경, url을 통한 웹서버에 요청/응답 과정, 자바 기반의 웹 프로그래밍개요 (Servlet, jsp)
+
+
+spring 설치
+https://spring.io/tools 
+윈도우 버전 다운로드 
+
+++++웹기반 어플리케이션 - 서블릿 프로그래밍 - 서블릿 기초 +++++
+
++Servlet
+
+Server Progam + let(작다를 뜻하는 접미어) : 작은 서버 프로그램
+Applet: Application + let: 작은 응용 프로그램 
+
+J2EE의 표준 스펙 중 하나 : Servlet , JSP, EJB, EL, java mail 
+
+
+JAVA를 사용하여 동적 웹페이지를 생성하는 표준 스펙
+HttpServlet 클래스를 상속하여 작성
+
+Web Application Server(WAS라고 함) ->(jboss, IBM 웹스피어)
+ = Servlet Contatiner + EJB Container 
+
+
+servlet Container(web container) -> tomcat
+
+servlet container : web server(servlet container + EJB Container)
+서블릿을 관리, 실행 할 수 있는 프로그램(서버)
+요청과 응답을 통한 네트워크 서비스 
+
+MIME 
+: Multipurpose Internet Mail Extension
+:전자 우편을 위한 인터넷 표준 포맷
+-간이 전자 우편 전송 프로토콜
+:SMTP에서는 기본적으로 7비트 기준 아스키 코드만 전송 가능 - 영어가 아닌 외국어, 특수기호,이미지, 파일 전송을 위해서는 인코딩 필요 ->이걸 MINE이라함
+:HTTP에서도 차용
+
+content type (mine-type)
+어떤 형식의 자료를 송/수신 하는지 표시 - mine의 종류를 표시
+
+html/text, application/json, image/png, multipart/form-data
+
+servlet 생성 /등록
+
+클래스 생성(HttpServlet 상속)
+url mapping  
+
+maven project
+
+Group id: 해당 프로젝트를 진행하는 회사에 대한 정보 
+             일반적으로 회사의 도메인 역순으로 기술 
+            ex) naver.com => com.naver
+                google.com => com.google
+                ddit.or.kr => kr.or.ddit
+Artifact  id: Group id에 해당하는 회사에서 진행하는 프로젝트명
+             ex) google : Gmail, Google Drive 
+Version: 프로젝트의 버전 
+             ex) 대.중.소 / 3.5.2
+packaging: jar (Java ARchive)-> 클래스들을 묵어 놓은 파일, 압축파일 
+
+class, html, image, jsp, css, javascript
+war: Web ARchive: 웹 프로그램을 묶어 놓은 파일 
+      tomcat의 webapps 폴더에 war 파일을 복사 해놓고 톰캣을 기동하면 war 파일을 톰캣이 자동으로 압축 해제하여
+      웹 어플리케이션이 서비스 되도록 한다. 
+
+우리는 war로 함 
+
+
+프로젝트
+pacage src검게 된거: 나중에 배포할때 제거됨 
+
+이클립스 : src wevapp -우클
+
+ctrl shfit r : 소스 찾음
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
